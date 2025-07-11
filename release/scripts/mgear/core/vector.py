@@ -95,8 +95,12 @@ def getPlaneNormal(v0, v1, v2):
     vector1 = v2 - v0
     vector0.normalize()
     vector1.normalize()
-
-    normal = vector1 ^ vector0
+    if vector0.isParallel(vector1):
+        # use arbitrary vector to align each joints instead of returning a broken normal
+        # by default, up vector is Z
+        normal = (vector0 ^ datatypes.Vector(0, 0, -1)).normal()
+    else:
+        normal = (vector1 ^ vector0).normal()
     normal.normalize()
 
     return normal
