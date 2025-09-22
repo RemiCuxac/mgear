@@ -19,9 +19,9 @@ class MirrorController:
 
             target_name = None
             if side == "L":
-                target_name = node.name().replace(side_l, side_r)
+                target_name = node.name().replace(side_l, side_r, 1)
             elif side == "R":
-                target_name = node.name().replace(side_r, side_l)
+                target_name = node.name().replace(side_r, side_l, 1)
 
             if target_name and pm.objExists(target_name):
                 return pm.PyNode(target_name)
